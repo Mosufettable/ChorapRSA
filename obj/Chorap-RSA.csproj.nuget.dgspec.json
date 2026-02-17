@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gongh\\OneDrive\\바탕 화면\\Repo\\[Commited]\\ChorapRSA\\Chorap-RSA.csproj": {}
+    "C:\\Users\\gongh\\OneDrive\\바탕 화면\\Repo\\0. Commited\\Major\\ChorapRSA\\Chorap-RSA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gongh\\OneDrive\\바탕 화면\\Repo\\[Commited]\\ChorapRSA\\Chorap-RSA.csproj": {
+    "C:\\Users\\gongh\\OneDrive\\바탕 화면\\Repo\\0. Commited\\Major\\ChorapRSA\\Chorap-RSA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gongh\\OneDrive\\바탕 화면\\Repo\\[Commited]\\ChorapRSA\\Chorap-RSA.csproj",
+        "projectUniqueName": "C:\\Users\\gongh\\OneDrive\\바탕 화면\\Repo\\0. Commited\\Major\\ChorapRSA\\Chorap-RSA.csproj",
         "projectName": "Chorap-RSA",
-        "projectPath": "C:\\Users\\gongh\\OneDrive\\바탕 화면\\Repo\\[Commited]\\ChorapRSA\\Chorap-RSA.csproj",
+        "projectPath": "C:\\Users\\gongh\\OneDrive\\바탕 화면\\Repo\\0. Commited\\Major\\ChorapRSA\\Chorap-RSA.csproj",
         "packagesPath": "C:\\Users\\gongh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gongh\\OneDrive\\바탕 화면\\Repo\\[Commited]\\ChorapRSA\\obj\\",
+        "outputPath": "C:\\Users\\gongh\\OneDrive\\바탕 화면\\Repo\\0. Commited\\Major\\ChorapRSA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.309/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -8,15 +8,15 @@ namespace Func
 {
     public class Tions
     {
-        public static void KeyGen()
+        public static void KeyGen() //키 제작소
         {
-            Program.p = GenerateLargePrime(128);
-            Program.q = GenerateLargePrime(128);
+            Program.p = GenerateBigBigPrime(128);
+            Program.q = GenerateBigBigPrime(128);
 
             Program.N = Program.p * Program.q;
             Program.Phi = (Program.p - 1) * (Program.q - 1);
 
-            Program.e = 65537;//(많이 쓰이는 65537 사용)
+            Program.e = 65537; //이게 요즘 대세라며
             if (BigInteger.GreatestCommonDivisor(Program.e, Program.Phi) != 1)
             {
                 Program.e = 3;
@@ -24,22 +24,22 @@ namespace Func
                     Program.e++;
             }
 
-            Program.d = ModInverse(Program.e, Program.Phi); // d 계산 (e의 모듈러 역원)
+            Program.d = ModInverser(Program.e, Program.Phi); //e의 모듈러 역원인 d 계산(인데 사실 나도 잘 몰라)
 
-            Waster(); // 보안상 p, q 제거
+            Waster(); //p,q 혹시 모르니까 지울게
         }
 
-        public static void Encrypt() // 암호화: c = a^e mod N
+        public static void Encrypt() //c = a^e mod N (사실 모드연산 나도 몰라)
         {
             Program.b = BigInteger.ModPow(Program.a, Program.e, Program.N);
         }
 
-        public static void Decrypt() // 복호화: a = c^d mod N
+        public static void Decrypt() //a = c^d mod N (걍 인터넷에서 이러면 된다길래 이렇게 한 거임)
         {
             Program.a = BigInteger.ModPow(Program.b, Program.d, Program.N);
         }
 
-        static bool IsProbablePrime(BigInteger n, int k = 10)
+        static bool IsPrime(BigInteger n, int k = 10) //아래꺼랑 꼬이긴 했는데 어쨌든 소수판정기
         {
             if (n < 2) return false;
             if (n == 2 || n == 3) return true;
@@ -74,7 +74,7 @@ namespace Func
             return true;
         }
 
-        static BigInteger GenerateLargePrime(int bits)
+        static BigInteger GenerateBigBigPrime(int bits) //큰 수 생성기
         {
             using (var rng = RandomNumberGenerator.Create())
             {
@@ -84,7 +84,7 @@ namespace Func
                     rng.GetBytes(bytes);
                     BigInteger candidate = new BigInteger(bytes);
                     if (candidate < 0) candidate = -candidate;
-                    if (IsProbablePrime(candidate)) return candidate;
+                    if (IsPrime(candidate)) return candidate;
                 }
             }
         }
@@ -104,7 +104,7 @@ namespace Func
             }
         }
 
-        static BigInteger ModInverse(BigInteger e, BigInteger phi)
+        static BigInteger ModInverser(BigInteger e, BigInteger phi) //대충 모드역원 뭐시기 해주는 놈
         {
             BigInteger t = 0, newt = 1;
             BigInteger r = phi, newr = e;
@@ -116,12 +116,12 @@ namespace Func
                 (r, newr) = (newr, r - quotient * newr);
             }
 
-            if (r > 1) throw new Exception("e is not invertible");
+            if (r > 1) throw new Exception("e가 역원이 아닙네다.");
             if (t < 0) t += phi;
             return t;
         }
 
-        static void Waster()
+        static void Waster() //보안위협줴거용
         {
             Program.p = 0;
             Program.q = 0;
