@@ -10,33 +10,33 @@ namespace Func
     {
         public static void KeyGen() //키 제작소
         {
-            Program.p = primegen(128);
-            Program.q = primegen(128);
+            Chorap.p = primegen(128);
+            Chorap.q = primegen(128);
 
-            Program.N = Program.p * Program.q;
-            Program.P = (Program.p - 1) * (Program.q - 1);
+            Chorap.N = Chorap.p * Chorap.q;
+            Chorap.P = (Chorap.p - 1) * (Chorap.q - 1);
 
-            Program.e = 65537; //이게 요즘 대세라며
-            if (BigInteger.GreatestCommonDivisor(Program.e, Program.P) != 1)
+            Chorap.e = 65537; //이게 요즘 대세라며
+            if (BigInteger.GreatestCommonDivisor(Chorap.e, Chorap.P) != 1)
             {
-                Program.e = 3;
-                while (BigInteger.GreatestCommonDivisor(Program.e, Program.P) != 1)
-                    Program.e++;
+                Chorap.e = 3;
+                while (BigInteger.GreatestCommonDivisor(Chorap.e, Chorap.P) != 1)
+                    Chorap.e++;
             }
 
-            Program.d = moder(Program.e, Program.P); //e의 모듈러 역원인 d 계산(인데 사실 나도 잘 몰라)
+            Chorap.d = moder(Chorap.e, Chorap.P); //e의 모듈러 역원인 d 계산(인데 사실 나도 잘 몰라)
 
             killer(); //p,q 혹시 모르니까 지울게
         }
 
-        public static void Encrypt() //c = a^e mod N (사실 모드연산 나도 몰라)
+        public static void Encrypt() //b = a^e mod N (사실 모드연산 나도 몰라)
         {
-            Program.b = BigInteger.ModPow(Program.a, Program.e, Program.N);
+            Chorap.b = BigInteger.ModPow(Chorap.a, Chorap.e, Chorap.N);
         }
 
-        public static void Decrypt() //a = c^d mod N (걍 인터넷에서 이러면 된다길래 이렇게 한 거임)
+        public static void Decrypt() //a = b^d mod N (걍 인터넷에서 이러면 된다길래 이렇게 한 거임)
         {
-            Program.a = BigInteger.ModPow(Program.b, Program.d, Program.N);
+            Chorap.a = BigInteger.ModPow(Chorap.b, Chorap.d, Chorap.N);
         }
 
         static bool isprime(BigInteger n, int k = 10) //아래꺼랑 꼬이긴 했는데 어쨌든 소수판정기
@@ -123,8 +123,8 @@ namespace Func
 
         static void killer() //보안위협줴거용
         {
-            Program.p = 0;
-            Program.q = 0;
+            Chorap.p = 0;
+            Chorap.q = 0;
         }
     }
 }

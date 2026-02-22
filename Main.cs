@@ -5,7 +5,7 @@ using Func;
 
 namespace Cryptor
 {
-    class Program
+    class Chorap // I am a Chorap... (Chorap==Newbie==초보)
     {
         public static BigInteger a; // 원본 숫자
         public static BigInteger b; // 암호화된 숫자
