@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Chorap-RSA")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4191bbe2c2f6be42a42dde5cf78fc22f0cbe17d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8638afd3fcac46a228137e27629c474ef1b6296e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Chorap-RSA")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Chorap-RSA")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -10,23 +10,23 @@ namespace Func
     {
         public static void KeyGen() //키 제작소
         {
-            Program.p = GenerateBigBigPrime(128);
-            Program.q = GenerateBigBigPrime(128);
+            Program.p = primegen(128);
+            Program.q = primegen(128);
 
             Program.N = Program.p * Program.q;
-            Program.Phi = (Program.p - 1) * (Program.q - 1);
+            Program.P = (Program.p - 1) * (Program.q - 1);
 
             Program.e = 65537; //이게 요즘 대세라며
-            if (BigInteger.GreatestCommonDivisor(Program.e, Program.Phi) != 1)
+            if (BigInteger.GreatestCommonDivisor(Program.e, Program.P) != 1)
             {
                 Program.e = 3;
-                while (BigInteger.GreatestCommonDivisor(Program.e, Program.Phi) != 1)
+                while (BigInteger.GreatestCommonDivisor(Program.e, Program.P) != 1)
                     Program.e++;
             }
 
-            Program.d = ModInverser(Program.e, Program.Phi); //e의 모듈러 역원인 d 계산(인데 사실 나도 잘 몰라)
+            Program.d = moder(Program.e, Program.P); //e의 모듈러 역원인 d 계산(인데 사실 나도 잘 몰라)
 
-            Waster(); //p,q 혹시 모르니까 지울게
+            killer(); //p,q 혹시 모르니까 지울게
         }
 
         public static void Encrypt() //c = a^e mod N (사실 모드연산 나도 몰라)
@@ -39,7 +39,7 @@ namespace Func
             Program.a = BigInteger.ModPow(Program.b, Program.d, Program.N);
         }
 
-        static bool IsPrime(BigInteger n, int k = 10) //아래꺼랑 꼬이긴 했는데 어쨌든 소수판정기
+        static bool isprime(BigInteger n, int k = 10) //아래꺼랑 꼬이긴 했는데 어쨌든 소수판정기
         {
             if (n < 2) return false;
             if (n == 2 || n == 3) return true;
@@ -55,7 +55,7 @@ namespace Func
 
             for (int i = 0; i < k; i++)
             {
-                BigInteger a = RandomBigInteger(2, n - 2);
+                BigInteger a = randgen(2, n - 2);
                 BigInteger x = BigInteger.ModPow(a, d, n);
                 if (x == 1 || x == n - 1) continue;
 
@@ -74,37 +74,37 @@ namespace Func
             return true;
         }
 
-        static BigInteger GenerateBigBigPrime(int bits) //큰 수 생성기
+        static BigInteger primegen(int bits) //큰 수 생성기
         {
-            using (var rng = RandomNumberGenerator.Create())
+            using (var dr = RandomNumberGenerator.Create())
             {
                 while (true)
                 {
                     byte[] bytes = new byte[bits / 8];
-                    rng.GetBytes(bytes);
+                    dr.GetBytes(bytes);
                     BigInteger candidate = new BigInteger(bytes);
                     if (candidate < 0) candidate = -candidate;
-                    if (IsPrime(candidate)) return candidate;
+                    if (isprime(candidate)) return candidate;
                 }
             }
         }
 
-        static BigInteger RandomBigInteger(BigInteger min, BigInteger max)
+        static BigInteger randgen(BigInteger min, BigInteger max)
         {
-            using (var rng = RandomNumberGenerator.Create())
+            using (var dr = RandomNumberGenerator.Create())
             {
                 byte[] bytes = max.ToByteArray();
                 BigInteger result;
                 do
                 {
-                    rng.GetBytes(bytes);
+                    dr.GetBytes(bytes);
                     result = new BigInteger(bytes);
                 } while (result < min || result >= max);
                 return result;
             }
         }
 
-        static BigInteger ModInverser(BigInteger e, BigInteger phi) //대충 모드역원 뭐시기 해주는 놈
+        static BigInteger moder(BigInteger e, BigInteger phi) //대충 모드역원 뭐시기 해주는 놈
         {
             BigInteger t = 0, newt = 1;
             BigInteger r = phi, newr = e;
@@ -121,7 +121,7 @@ namespace Func
             return t;
         }
 
-        static void Waster() //보안위협줴거용
+        static void killer() //보안위협줴거용
         {
             Program.p = 0;
             Program.q = 0;
